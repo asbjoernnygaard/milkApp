@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    url: jdbc:postgresql://hattie.db.elephantsql.com/hxklfchd
+    username: hxklfchd
+    password: zl4sl26Iwycfo71wbCvR60ycugHUet6B
+  jpa:
+    hibernate:
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+debug: true

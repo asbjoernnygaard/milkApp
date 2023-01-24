@@ -1,4 +1,4 @@
-package se.salt.milkappbackend.model;
+package se.salt.milkappbackend.product.model;
 
 import lombok.Data;
 

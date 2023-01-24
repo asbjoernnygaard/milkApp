@@ -1,8 +1,8 @@
-package se.salt.milkappbackend.repository;
+package se.salt.milkappbackend.product.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import se.salt.milkappbackend.model.Product;
+import se.salt.milkappbackend.product.model.Product;
 
 import java.util.List;
 

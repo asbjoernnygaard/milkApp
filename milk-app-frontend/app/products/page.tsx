@@ -1,24 +1,13 @@
-'use client'
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ProductList from "@/app/products/productlist/ProductList";
 import {Product} from "@/app/types";
+import {getAllProductData} from "@/app/products/getAllProductData";
 
 const Page = () => {
-
-  const [products, setProducts] = useState<Product[] | null>(null);
-
-  useEffect(() => {
-    fetch('http://localhost:8080/milkapi')
-        .then(res => res.json())
-        .then(res => setProducts(res))
-        .catch(err => console.log(err))
-  }, []);
-
-  if (!products) return (<div>Loading products...</div>)
-
   return (
       <div>
-        <ProductList products={products}/>
+        {/* @ts-expect-error Server Component */}
+        <ProductList/>
       </div>
   );
 };

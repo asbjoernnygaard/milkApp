@@ -1,11 +1,12 @@
-package se.salt.milkappbackend;
+package se.salt.milkappbackend.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import se.salt.milkappbackend.model.AddProductDTO;
-import se.salt.milkappbackend.model.Product;
+import se.salt.milkappbackend.product.model.AddProductDTO;
+import se.salt.milkappbackend.product.model.MilkTypeDTO;
+import se.salt.milkappbackend.product.model.Product;
 
 import java.net.URI;
 import java.util.List;
@@ -44,6 +45,13 @@ public class Controller {
             System.out.println(e);
             return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
         }
+    }
+
+
+    @GetMapping("/types")
+    ResponseEntity<List<MilkTypeDTO>> getAllMilktypes() {
+        List<MilkTypeDTO> types = service.getAllMilktypes();
+        return ResponseEntity.ok(types);
     }
 
 }

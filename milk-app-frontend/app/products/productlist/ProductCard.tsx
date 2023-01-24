@@ -22,7 +22,6 @@ const ProductCard = ({product}: ProductCardProps) => {
         </Link>
         <h4>{type}</h4>
         <div>stock:{' ' + storage}</div>
-        <button>Add to cart</button>
       </li>
   );
 };

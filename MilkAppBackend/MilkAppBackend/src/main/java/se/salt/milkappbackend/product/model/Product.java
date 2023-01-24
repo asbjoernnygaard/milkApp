@@ -1,4 +1,4 @@
-package se.salt.milkappbackend.model;
+package se.salt.milkappbackend.product.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,20 +1,16 @@
 import React from 'react';
-import ProductList from "@/src/app/products/productlist/ProductList";
-import {fetchFunctions, getProductTypes} from "@/src/fetchFunctions";
-import Searchbar from "@/src/app/products/Searchbar";
-import FilterList from "@/src/app/products/FilterList";
-import * as console from "console";
+import ProductList from "@/src/app/products/(components)/(productlist)/ProductList";
+import {fetchFunctions} from "@/src/fetchFunctions";
+import ProductFilteringUI from "@/src/app/products/(components)/ProductFilteringUI";
 
-const Page = async ({searchParams}: {searchParams: {page: number, type: string, query: string}}) => {
+const Page = async ({searchParams}: {searchParams: {page: number, type: Set<string>, query: string}}) => {
   const {page, type, query} = searchParams;
 
   const {products} = await fetchFunctions(page, type, query)
-  const types = await getProductTypes();
 
   return (
       <div>
-        <Searchbar/>
-        <FilterList types={types}/>
+        <ProductFilteringUI/>
         <ProductList products={products}/>
       </div>
   );

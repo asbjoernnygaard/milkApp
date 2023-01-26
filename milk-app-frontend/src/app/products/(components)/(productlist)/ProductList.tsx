@@ -1,6 +1,6 @@
 import React from 'react';
 import {Product, ProductListResponse} from "@/src/types";
-import ProductCard from "@/src/app/products/productlist/ProductCard";
+import ProductCard from "@/src/app/products/(components)/(productlist)/ProductCard";
 
 interface ProductListProps {
   products: Product[]

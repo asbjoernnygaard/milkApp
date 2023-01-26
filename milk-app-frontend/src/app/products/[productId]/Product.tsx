@@ -1,9 +1,13 @@
 import React from 'react';
-import {Product} from "@/app/types";
+import {Product} from "@/src/types";
 import Image from "next/image";
 
-const Product = ({id, name, type, storage}: Product) => {
-  // if there is already product data for this product, use it. Else, fetch
+interface ProductProps {
+  product: Product
+}
+
+const Product = ({product}: ProductProps) => {
+  const {id, name, type, storage}: Product = product;
 
   return (
       <article>

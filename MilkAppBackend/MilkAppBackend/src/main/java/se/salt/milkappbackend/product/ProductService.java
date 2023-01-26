@@ -2,9 +2,11 @@ package se.salt.milkappbackend.product;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import se.salt.milkappbackend.product.model.AddProductDTO;
 import se.salt.milkappbackend.product.model.MilkTypeDTO;
+import se.salt.milkappbackend.product.model.ProductListResDTO;
 import se.salt.milkappbackend.product.model.Product;
 import se.salt.milkappbackend.product.repository.ProductRepository;
 
@@ -34,12 +36,38 @@ public class ProductService {
         repo.postProducts(products);
     }
 
-    // This is emberassing, there's far better ways to do this
-    // However due to the small size of the task I'd just like to get going
+    // TODO: Reconsider, unnecessary overhead
     public List<MilkTypeDTO> getAllMilktypes() {
         List<Product> productList = getAllProducts();
         Set<String> productTypes = new HashSet<>();
         productList.forEach(product -> productTypes.add(product.getType()));
         return productTypes.stream().map(MilkTypeDTO::new).toList();
+    }
+
+    public ProductListResDTO getPaginatedProducts(int page, Set<String> type, String query) {
+        Page<Product> products = getPaginatedProductsController(page, type, query);
+        ProductListResDTO dto = mapper.map(products, ProductListResDTO.class);
+        dto.setProducts(products.getContent());
+        return dto;
+    }
+
+    public Page<Product> getPaginatedProductsController(int page, Set<String> type, String query) {
+        // No filter
+        if (type.isEmpty() && query.isEmpty()){
+            return repo.getPaginatedProducts(page);
+        }
+
+        // Type
+        if (query.isEmpty()) {
+            return repo.getProductByType(page, type);
+        }
+
+        // Query
+        if(type.isEmpty()) {
+            return repo.getProductByQuery(page, query);
+        }
+
+        // Type and Query
+        return repo.getProductByQueryAndType(page, type, query);
     }
 }

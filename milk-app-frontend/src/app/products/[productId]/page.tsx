@@ -1,6 +1,6 @@
 import React from 'react';
-import Product from "@/app/products/[productId]/Product";
-import {getProductData} from "@/app/products/getAllProductData";
+import Product from "@/src/app/products/[productId]/Product";
+import {getProductData} from "@/src/fetchFunctions";
 
 const Page = async ({params} : {params: {productId: string}}) => {
 
@@ -8,7 +8,6 @@ const Page = async ({params} : {params: {productId: string}}) => {
 
   return (
       <div>
-        {/* @ts-expect-error Server Component */}
         <Product product={product}/>
       </div>
   )
